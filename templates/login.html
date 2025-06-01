@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="split-screen">
+    <div class="split-screen__left">
+        <div class="split-screen__content">
+            <h1>Welcome Back!</h1>
+            <p>Help reunite people with their lost items or find what you've lost.</p>
+            <div class="split-screen__image">
+                <i class="fas fa-search-location"></i>
+            </div>
+        </div>
+    </div>
+    <div class="split-screen__right">
+        <div class="auth-form">
+            <div class="text-center mb-4">
+                <h2>Sign In</h2>
+                <p class="text-muted">Access your account</p>
+            </div>
+
+            <form method="post" action="{{ url_for('auth.login') }}">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }} alert-dismissible fade show">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control custom-input" id="username" name="username" required>
+                    <label for="username"><i class="fas fa-user"></i> Username</label>
+                </div>
+
+                <div class="form-floating mb-4">
+                    <input type="password" class="form-control custom-input" id="password" name="password" required>
+                    <label for="password"><i class="fas fa-lock"></i> Password</label>
+                </div>
+
+                <div class="d-grid gap-2 mb-4">
+                    <button type="submit" class="btn btn-primary btn-lg hover-effect">
+                        <i class="fas fa-sign-in-alt me-2"></i>Login
+                    </button>
+                </div>
+            </form>
+            
+            <div class="text-center">
+                <p>Don't have an account? <a href="{{ url_for('auth.register') }}" class="text-primary fw-bold">Register here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
