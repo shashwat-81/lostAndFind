@@ -11,19 +11,16 @@ def submit_feedback():
     if request.method == 'POST':
         feedback = {
             'user_id': str(current_user.id),
+            'username': current_user.username,
             'message': request.form.get('message'),
-            'category': request.form.get('category', 'other'),
-            'created_at': datetime.utcnow(),
-            'status': 'new'
+            'category': request.form.get('category', 'general'),
+            'created_at': datetime.utcnow()
         }
         
-        try:
-            mongo.db.feedback.insert_one(feedback)
-            flash('Thank you for your feedback!', 'success')
-            return redirect(url_for('general.home'))
-        except Exception as e:
-            flash('Error submitting feedback. Please try again.', 'danger')
-    
+        mongo.db.feedback.insert_one(feedback)
+        flash('Thank you for your feedback!', 'success')
+        return redirect(url_for('general.home'))
+        
     return render_template('feedback.html')
 
 @feedback_bp.route('/my-feedback')

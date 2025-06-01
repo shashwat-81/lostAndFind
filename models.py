@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from bson.objectid import ObjectId
 from flask import current_app
 from extensions import mongo
+from models.notification import Notification
 
 class User(UserMixin):
     def __init__(self, user_data):
@@ -24,7 +25,6 @@ class User(UserMixin):
         except Exception as e:
             print(f"Error getting user: {e}")
             return None
-
     @staticmethod
     def find_by_username(username):
         try:
@@ -48,3 +48,9 @@ class User(UserMixin):
         except Exception as e:
             print(f"Error creating user: {e}")
             return None
+
+    def get_notifications(self):
+        return Notification.get_user_notifications(self.id)
+
+    def get_unread_notifications_count(self):
+        return Notification.get_unread_count(self.id)
