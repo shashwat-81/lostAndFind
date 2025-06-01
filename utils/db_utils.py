@@ -3,12 +3,19 @@ from datetime import datetime
 from bson import ObjectId
 
 def get_filtered_items(category=None, status=None):
+    """
+    Get items with optional category and status filters
+    """
     query = {}
-    if category:
+    
+    if category and category != 'all':
         query['category'] = category
-    if status:
+        
+    if status and status != 'all':
         query['status'] = status
-    return list(mongo.db.items.find(query).sort('report_date', -1))
+
+    items = mongo.db.items.find(query).sort('report_date', -1)
+    return list(items)
 
 def add_item(item_data, user):
     item = {

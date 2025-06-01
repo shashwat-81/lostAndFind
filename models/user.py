@@ -26,12 +26,20 @@ class User(UserMixin):
         return User(user_data) if user_data else None
 
     @staticmethod
-    def create(username, password):
+    def create_user(username, password, role='user'):
+        # Check if username already exists
+        if mongo.db.users.find_one({'username': username}):
+            raise ValueError('Username already exists')
+
+        # Create new user document
         user_data = {
             'username': username,
             'password_hash': generate_password_hash(password),
-            'role': 'user'
+            'role': role
         }
+        
+        # Insert into database
         result = mongo.db.users.insert_one(user_data)
         user_data['_id'] = result.inserted_id
+        
         return User(user_data)

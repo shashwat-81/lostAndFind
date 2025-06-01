@@ -256,3 +256,44 @@ body {
         padding: 1.5rem;
     }
 }
+
+/* Claim Request Styles */
+.claim-request {
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.claim-request:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.claim-request .badge {
+    font-size: 0.875rem;
+    padding: 0.5rem 1rem;
+}
+
+.claim-request button {
+    transition: all 0.2s ease;
+}
+
+.claim-request button:hover {
+    transform: translateY(-1px);
+}
+
+/* Modal Styles */
+.modal-content {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+.modal-header .btn-close {
+    filter: brightness(0) invert(1);
+}

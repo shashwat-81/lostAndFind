@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}Item Details{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">{{ item.title }}</h2>
+            <span class="badge bg-{{ 'success' if item.status == 'found' else 'danger' }}">
+                {{ item.status|title }}
+            </span>
+        </div>
+        <div class="card-body">
+            <!-- Item Details -->
+            <div class="row mb-4">
+                <div class="col-md-8">
+                    <p><strong>Description:</strong> {{ item.description }}</p>
+                    <p><strong>Location:</strong> {{ item.location }}</p>
+                    <p><strong>Category:</strong> {{ item.category }}</p>
+                    <p><strong>Reported by:</strong> {{ item.reporter_name }}</p>
+                    <p><strong>Date:</strong> {{ item.report_date.strftime('%Y-%m-%d %H:%M') }}</p>
+                </div>
+            </div>
+
+            <!-- Claim Requests Section -->
+            {% if current_user.role == 'admin' and item.claim_requests %}
+            <div class="claims-section mt-4">
+                <h3>Claim Requests</h3>
+                {% for claim in item.claim_requests %}
+                <div class="claim-card mb-3 p-3 border rounded">
+                    <div class="d-flex justify-content-between align-items-start">
+                        <div>
+                            <h5>{{ claim.username }}</h5>
+                            <p class="mb-2">{{ claim.message }}</p>
+                            <small class="text-muted">Submitted: {{ claim.created_at.strftime('%Y-%m-%d %H:%M') }}</small>
+                        </div>
+                        <div>
+                            {% if claim.status == 'pending' %}
+                            <div class="btn-group" role="group">
+                                <button type="button" 
+                                        class="btn btn-success btn-sm claim-action-btn" 
+                                        data-action="approve"
+                                        data-claim-id="{{ claim.user_id }}"
+                                        data-item-id="{{ item._id }}">
+                                    <i class="fas fa-check me-1"></i>Approve
+                                </button>
+                                <button type="button" 
+                                        class="btn btn-danger btn-sm claim-action-btn"
+                                        data-action="reject"
+                                        data-claim-id="{{ claim.user_id }}"
+                                        data-item-id="{{ item._id }}">
+                                    <i class="fas fa-times me-1"></i>Reject
+                                </button>
+                            </div>
+                            {% else %}
+                            <span class="badge bg-{{ 'success' if claim.status == 'approved' else 'danger' }}">
+                                {{ claim.status|title }}
+                            </span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/claim-handler.js') }}"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const buttons = document.querySelectorAll('.claim-action-btn');
+    buttons.forEach(button => {
+        button.addEventListener('click', function() {
+            const action = this.dataset.action;
+            const claimId = this.dataset.claimId;
+            const itemId = this.dataset.itemId;
+            
+            if (confirm(`Are you sure you want to ${action} this claim?`)) {
+                processClaim(this, action, claimId, itemId);
+            }
+        });
+    });
+});
+</script>
+{% endblock %}

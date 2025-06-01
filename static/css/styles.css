@@ -1,4 +1,4 @@
-:root {    --primary-color: #4361ee;    --secondary-color: #3f37c9;    --success-color: #4cc9f0;    --info-color: #4895ef;    --warning-color: #f72585;    --danger-color: #ff0a54;    --light-bg: #f8f9fa;    --dark-bg: #212529;}body {    min-height: 100vh;    display: flex;    flex-direction: column;    background-color: var(--light-bg);    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;}/* Navbar Styles */.navbar {    padding: 1.2rem 2rem;    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);}.navbar-brand {    font-size: 1.8rem;    font-weight: 700;    color: white !important;}/* Card Styles */.auth-card {    max-width: 450px;    margin: 3rem auto;    border: none;    border-radius: 15px;    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);    overflow: hidden;}.auth-card .card-header {    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));    color: white;    padding: 2rem;    text-align: center;    border: none;}.auth-card .card-body {    padding: 2.5rem;}/* Form Styles */.form-control, .form-select {    padding: 0.8rem 1.2rem;    border-radius: 10px;    border: 2px solid #e9ecef;    transition: all 0.3s ease;}.form-control:focus, .form-select:focus {    border-color: var(--primary-color);    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.15);}.form-label {    font-weight: 600;    margin-bottom: 0.5rem;    color: #495057;}/* Button Styles */.btn {    padding: 0.8rem 1.5rem;    border-radius: 10px;    font-weight: 600;    transition: all 0.3s ease;}.btn-primary {    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));    border: none;}.btn-primary:hover {    transform: translateY(-2px);    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);}/* Dashboard Styles */.dashboard-stats {    display: grid;    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));    gap: 1.5rem;    margin-bottom: 2rem;}.stat-card {    background: white;    padding: 1.5rem;    border-radius: 15px;    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);    transition: transform 0.3s ease;}.stat-card:hover {    transform: translateY(-5px);}/* Items Grid */.items-grid {    display: grid;    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));    gap: 1.5rem;    padding: 1.5rem 0;}.item-card {    background: white;    border-radius: 15px;    overflow: hidden;    transition: all 0.3s ease;}.item-card:hover {    transform: translateY(-5px);    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);}/* Status Badges */.badge {    padding: 0.6rem 1.2rem;    border-radius: 8px;    font-weight: 600;    font-size: 0.9rem;}.badge-lost {    background-color: var(--danger-color);    color: white;}.badge-found {    background-color: var(--success-color);    color: white;}/* Admin Dashboard */.admin-dashboard {    padding: 2rem;    background: white;    border-radius: 15px;    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);}.admin-controls {    display: flex;    gap: 1rem;    margin-bottom: 2rem;}/* Split Screen Layout */.split-screen {    display: flex;    min-height: calc(100vh - 76px);}.split-screen__left {    flex: 1;    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));    display: flex;    align-items: center;    justify-content: center;    padding: 2rem;    color: white;}.split-screen__left--register {    background: linear-gradient(135deg, var(--secondary-color), var(--success-color));
+:root {    --primary-color: #4361ee;    --secondary-color: #3f37c9;    --success-color: #4cc9f0;    --info-color: #4895ef;    --warning-color: #f72585;    --danger-color: #ff0a54;    --light-bg: #f8f9fa;    --dark-bg: #212529;}body {    min-height: 100vh;    display: flex;    flex-direction: column;    background-color: var(--light-bg);    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;}/* Navbar Styles */.navbar {    padding: 1.2rem 2rem;    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);}.navbar-brand {    font-size: 1.8rem;    font-weight: 700;    color: white !important;}/* Card Styles */.auth-card {    max-width: 450px;    margin: 3rem auto;    border: none;    border-radius: 15px;    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);    overflow: hidden;}.auth-card .card-header {    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));    color: white;    padding: 2rem;    text-align: center;    border: none;}.auth-card .card-body {    padding: 2.5rem;}/* Form Styles */.form-control, .form-select {    padding: 0.8rem 1.2rem;    border-radius: 10px;    border: 2px solid #e9ecef;    transition: all 0.3s ease;}.form-control:focus, .form-select:focus {    border-color: var(--primary-color);    box-shadow: 0 0 0 0.25rem rgba(67, 97, 238, 0.15);}.form-label {    font-weight: 600;    margin-bottom: 0.5rem;    color: #495057;}/* Button Styles */.btn {    padding: 0.8rem 1.5rem;    border-radius: 10px;    font-weight: 600;    transition: all 0.3s ease;}.btn-primary {    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));    border: none;}.btn-primary:hover {    transform: translateY(-2px);    box-shadow: 0 4px 12px rgba(67, 97, 238, 0.3);}/* Dashboard Styles */.dashboard-stats {    display: grid;    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));    gap: 1.5rem;    margin-bottom: 2rem;}.stat-card {    background: white;    padding: 1.5rem;    border-radius: 15px;    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);    transition: transform 0.3s ease;}.stat-card:hover {    transform: translateY(-5px);}/* Items Grid */.items-grid {    display: grid;    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));    gap: 1.5rem;    padding: 1.5rem 0;}.item-card {    background: white;    border-radius: 15px;    overflow: hidden;    transition: all 0.3s ease;}.item-card:hover {    transform: translateY(-5px);    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);}/* Status Badges */.badge {    padding: 0.5em 1em;    font-weight: 500;}/* Admin Dashboard */.admin-dashboard {    padding: 2rem;    background: white;    border-radius: 15px;    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);}.admin-controls {    display: flex;    gap: 1rem;    margin-bottom: 2rem;}/* Split Screen Layout */.split-screen {    display: flex;    min-height: calc(100vh - 76px);}.split-screen__left {    flex: 1;    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));    display: flex;    align-items: center;    justify-content: center;    padding: 2rem;    color: white;}.split-screen__left--register {    background: linear-gradient(135deg, var(--secondary-color), var(--success-color));
 }
 
 .split-screen__content {
@@ -198,6 +198,64 @@
     padding-right: 1rem;
 }
 
+.notification-toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    min-width: 300px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.3s ease-out;
+}
+
+.alert {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.claim-status-change {
+    animation: flashBackground 1s ease-out;
+}
+
+@keyframes flashBackground {
+    0% { background-color: rgba(var(--primary-color-rgb), 0.1); }
+    50% { background-color: rgba(var(--primary-color-rgb), 0.2); }
+    100% { background-color: transparent; }
+}
+
+/* Claim Card Styles */
+.claim-card {
+    transition: background-color 0.3s ease;
+    background: #fff;
+}
+
+.claim-card:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.claim-status-pending {
+    border-left: 4px solid var(--warning-color);
+}
+
+.claim-status-approved {
+    border-left: 4px solid var(--success-color);
+}
+
+.claim-status-rejected {
+    border-left: 4px solid var(--danger-color);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .navbar {
@@ -243,4 +301,18 @@
     .hero-section {
         padding: 4rem 0 3rem;
     }
+}
+
+.btn-group .btn {
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.btn-group .btn:disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.btn-group .btn:active {
+    transform: translateY(1px);
 }

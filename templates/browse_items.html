@@ -2,7 +2,7 @@
 {% block title %}Browse Items{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container py-4">
     <h2 class="mb-4">Browse Items</h2>
     
     <div class="row mb-4">
@@ -26,24 +26,33 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row g-4">
         {% for item in items %}
-        <div class="col-md-4 mb-4">
-            <div class="card item-card">
+        <div class="col-md-4">
+            <div class="card item-card h-100">
                 <div class="card-body">
                     <h5 class="card-title">{{ item.title }}</h5>
                     <p class="card-text">{{ item.description }}</p>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Category:</strong> {{ item.category }}</li>
-                        <li class="list-group-item"><strong>Location:</strong> {{ item.location }}</li>
+                    <ul class="list-group list-group-flush mb-3">
                         <li class="list-group-item">
-                            <strong>Status:</strong> 
-                            <span class="badge {% if item.status == 'lost' %}bg-danger{% else %}bg-success{% endif %}">
+                            <strong>Category:</strong> {{ item.category }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Location:</strong> {{ item.location }}
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Status:</strong>
+                            <span class="badge bg-{{ 'success' if item.status == 'found' else 'danger' }}">
                                 {{ item.status|title }}
                             </span>
                         </li>
-                        <li class="list-group-item"><strong>Date:</strong> {{ item.report_date.strftime('%Y-%m-%d %H:%M') }}</li>
                     </ul>
+                    <div class="d-grid">
+                        <a href="{{ url_for('items.view_item', item_id=item._id) }}" 
+                           class="btn btn-primary hover-effect">
+                            <i class="fas fa-eye me-2"></i>View Details
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

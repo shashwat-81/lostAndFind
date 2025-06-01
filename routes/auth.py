@@ -27,27 +27,21 @@ def login():
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('general.home'))
-        
+
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        confirm_password = request.form.get('confirm_password')
         
-        if password != confirm_password:
-            flash('Passwords do not match', 'danger')
-            return render_template('register.html')
-            
-        if User.find_by_username(username):
-            flash('Username already exists', 'danger')
-            return render_template('register.html')
-        
-        if len(password) < 6:
-            flash('Password must be at least 6 characters long', 'danger')
-            return render_template('register.html')
-        
-        User.create_user(username, password)
-        flash('Registration successful! Please login.', 'success')
-        return redirect(url_for('auth.login'))
+        try:
+            # Use the new create_user method
+            user = User.create_user(username, password)
+            login_user(user)
+            flash('Registration successful!', 'success')
+            return redirect(url_for('general.home'))
+        except ValueError as e:
+            flash(str(e), 'danger')
+        except Exception as e:
+            flash('An error occurred during registration.', 'danger')
     
     return render_template('register.html')
 
